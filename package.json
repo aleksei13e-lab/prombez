@@ -1,0 +1,21 @@
+{
+  "name": "prombez-krossvord",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Интерактивные кроссворды по промышленной безопасности. Ответы хранятся только на сервере.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "netlify dev",
+    "sweep": "netlify functions:invoke sweep"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.2.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.38.0"
+  }
+}

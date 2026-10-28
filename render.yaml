@@ -1,0 +1,20 @@
+# Blueprint для Render: New + → Blueprint → выберите репозиторий.
+# Persistent Disk доступен только на платных тарифах; без диска кроссворды
+# будут пропадать при каждом перезапуске и деплое.
+services:
+  - type: web
+    name: prombezkrossvord
+    runtime: node
+    plan: starter
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: PB_SALT
+        generateValue: true
+      - key: PB_LOCAL_DIR
+        value: /var/data
+    disk:
+      name: data
+      mountPath: /var/data
+      sizeGB: 1
