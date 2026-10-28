@@ -1,0 +1,91 @@
+# Конфигурация Netlify для «ПромБезКроссворд»
+# Публикуется ТОЛЬКО каталог public/ — банк ответов в netlify/functions/_data/
+# физически недоступен статическому серверу.
+
+[build]
+  publish = "public"
+  command = "echo 'Статический сайт: сборка не требуется'"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Ежедневная очистка кроссвордов без обращений 180 дней
+[functions."sweep"]
+  schedule = "@daily"
+
+# --- API: чистые URL с сохранением метода ---
+[[redirects]]
+  from = "/api/generate"
+  to = "/.netlify/functions/generate"
+  status = 200
+  methods = ["POST"]
+
+[[redirects]]
+  from = "/api/crossword"
+  to = "/.netlify/functions/crossword-create"
+  status = 200
+  methods = ["POST"]
+
+[[redirects]]
+  from = "/api/crossword/:id"
+  to = "/.netlify/functions/crossword-get?id=:id"
+  status = 200
+  methods = ["GET"]
+
+[[redirects]]
+  from = "/api/crossword/:id/manage"
+  to = "/.netlify/functions/manage?id=:id"
+  status = 200
+  methods = ["GET", "PUT", "DELETE"]
+
+[[redirects]]
+  from = "/api/check"
+  to = "/.netlify/functions/check"
+  status = 200
+  methods = ["POST"]
+
+[[redirects]]
+  from = "/api/hint"
+  to = "/.netlify/functions/hint"
+  status = 200
+  methods = ["POST"]
+
+[[redirects]]
+  from = "/api/bank/:theme"
+  to = "/.netlify/functions/bank?theme=:theme"
+  status = 200
+  methods = ["GET"]
+
+# Чистые URL страниц: /play/<id> отдаёт страницу-каркас, id читает клиент из адреса
+[[redirects]]
+  from = "/play/*"
+  to = "/play.html"
+  status = 200
+
+[[redirects]]
+  from = "/generator"
+  to = "/generator.html"
+  status = 200
+
+[[redirects]]
+  from = "/teacher"
+  to = "/teacher.html"
+  status = 200
+
+# Заголовки безопасности для всех страниц
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+
+# API-ответы не кэшируются нигде и никогда (дублируется в самих функциях)
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate"

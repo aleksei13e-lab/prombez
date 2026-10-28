@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Панель преподавателя — ПромБезКроссворд</title>
+  <meta name="description" content="Конструктор кроссвордов по промышленной безопасности для преподавателей: свои слова и вопросы или банк терминов, настройки подсказок, ссылка для студентов и защищённая ссылка управления.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">🧩 ПромБезКроссворд</a>
+      <nav class="site-nav" aria-label="Основное меню">
+        <a href="/">Главная</a>
+        <a href="/generator">Генератор</a>
+        <a href="/teacher" aria-current="page">Преподавателю</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Панель преподавателя</h1>
+    <p class="subtitle">Соберите кроссворд из своих слов и вопросов — или выберите вопросы из банка:
+      слова банка подставятся на сервере и не попадут в браузер.</p>
+
+    <section class="card" aria-labelledby="editor-h">
+      <h2 id="editor-h" style="margin-top:0">Конструктор</h2>
+
+      <div class="field">
+        <label for="cw-title">Название кроссворда</label>
+        <input type="text" id="cw-title" maxlength="120" placeholder="Например: Итоговый кроссворд по ПМЛА">
+      </div>
+
+      <h3>Слова и вопросы</h3>
+      <div class="word-rows" id="word-rows"></div>
+      <div class="toolbar">
+        <button class="btn" id="btn-add-word" type="button">+ Добавить слово</button>
+        <button class="btn" id="btn-bank" type="button">Выбрать вопросы из банка</button>
+      </div>
+
+      <div class="bank-clues" id="bank-panel" hidden>
+        <div class="field">
+          <label for="bank-theme">Тема банка</label>
+          <select id="bank-theme">
+            <option value="pb">Промышленная безопасность (ПБ)</option>
+            <option value="pmla">ПМЛА</option>
+            <option value="asf">АСФ</option>
+            <option value="vpb">НКПР и взрывопожаробезопасность</option>
+            <option value="suot">СУОТ и ПБ</option>
+          </select>
+        </div>
+        <button class="btn btn-small" id="btn-load-bank" type="button">Показать вопросы темы</button>
+        <p class="status" id="bank-status" role="status"></p>
+        <div id="bank-list"></div>
+        <button class="btn btn-small" id="btn-add-bank" type="button">Добавить выбранные</button>
+      </div>
+
+      <h3>Настройки публикации</h3>
+      <div class="field">
+        <label for="set-hints">Подсказки на сессию (0 — выключены)</label>
+        <select id="set-hints">
+          <option>0</option><option>1</option><option>2</option>
+          <option selected>3</option><option>4</option><option>5</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="set-checks">Лимит проверок на сессию (0 — без лимита)</label>
+        <input type="number" id="set-checks" min="0" max="100" step="1" value="0">
+      </div>
+      <div class="checks">
+        <label><input type="checkbox" id="set-show-answers"> Показывать ответы после завершения</label>
+      </div>
+
+      <div class="toolbar">
+        <button class="btn btn-primary" id="btn-publish">Опубликовать кроссворд</button>
+        <button class="btn" id="btn-clear-form" type="button">Очистить форму</button>
+        <label class="btn" for="import-file" style="font-weight:600">Загрузить из файла</label>
+        <input type="file" id="import-file" accept="application/json,.json" hidden>
+      </div>
+      <p class="status" id="teacher-status" role="status"></p>
+
+      <div class="result-box" id="publish-result" hidden></div>
+    </section>
+
+    <section aria-labelledby="my-h">
+      <h2 id="my-h">Мои кроссворды</h2>
+      <p>Список и токены управления хранятся в этом браузере (LocalStorage). Токены не восстанавливаются с сервера — сохраняйте секретные ссылки.</p>
+      <div class="my-list" id="my-list"></div>
+    </section>
+
+    <div id="print-answers"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      Ответы хранятся только на сервере и не передаются студентам. Прогресс решения хранится в вашем браузере. Персональные данные не собираются.
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/teacher.js"></script>
+</body>
+</html>

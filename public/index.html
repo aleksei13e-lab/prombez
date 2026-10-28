@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ПромБезКроссворд — кроссворды по промышленной безопасности</title>
+  <meta name="description" content="Интерактивные кроссворды по промышленной безопасности: ПБ, ПМЛА, АСФ, взрывопожаробезопасность и охрана труда. Решайте готовые темы, генерируйте свои варианты, преподаватели могут собирать собственные кроссворды.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">🧩 ПромБезКроссворд</a>
+      <nav class="site-nav" aria-label="Основное меню">
+        <a href="/" aria-current="page">Главная</a>
+        <a href="/generator">Генератор</a>
+        <a href="/teacher">Преподавателю</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Учите термины промышленной безопасности через кроссворды</h1>
+    <p class="subtitle">
+      Готовые тематические кроссворды по промышленной безопасности (ПБ), планам мероприятий
+      по локализации и ликвидации аварий (ПМЛА), аварийно-спасательным формированиям (АСФ),
+      взрывопожаробезопасности и охране труда. Решайте онлайн, генерируйте новые варианты,
+      а преподаватели могут собрать собственный кроссворд за несколько минут.
+    </p>
+
+    <h2 id="themes">Готовые кроссворды</h2>
+    <div class="cards cols-3">
+      <article class="card">
+        <h3>Промышленная безопасность (ПБ) и общие термины</h3>
+        <p>Классы опасности ОПО, экспертиза, лицензирование, производственный контроль и ключевые документы.</p>
+        <span class="meta">до 19 терминов в сетке · онлайн-кроссворд</span>
+        <div class="actions"><button class="btn btn-primary" data-solve="pb" data-count="16">Решать</button></div>
+      </article>
+      <article class="card">
+        <h3>Планы мероприятий по локализации и ликвидации аварий (ПМЛА)</h3>
+        <p>Структура плана, сроки, оповещение, ответственные лица, взаимодействие служб.</p>
+        <span class="meta">до 19 терминов в сетке · онлайн-кроссворд</span>
+        <div class="actions"><button class="btn btn-primary" data-solve="pmla" data-count="16">Решать</button></div>
+      </article>
+      <article class="card">
+        <h3>Аварийно-спасательные формирования (АСФ)</h3>
+        <p>Виды формирований, оснащение, нормативное время развёртывания, первая помощь.</p>
+        <span class="meta">до 19 терминов в сетке · онлайн-кроссворд</span>
+        <div class="actions"><button class="btn btn-primary" data-solve="asf" data-count="16">Решать</button></div>
+      </article>
+      <article class="card">
+        <h3>НКПР и взрывопожаробезопасность</h3>
+        <p>Пределы распространения пламени, категории помещений, взрывозащищённое исполнение, контроль среды.</p>
+        <span class="meta">до 19 терминов в сетке · онлайн-кроссворд</span>
+        <div class="actions"><button class="btn btn-primary" data-solve="vpb" data-count="16">Решать</button></div>
+      </article>
+      <article class="card">
+        <h3>Система управления охраной труда (СУОТ) и ПБ</h3>
+        <p>Политика предприятия, идентификация рисков, СИЗ, газоопасные работы, культура безопасности.</p>
+        <span class="meta">до 20 терминов в сетке · онлайн-кроссворд</span>
+        <div class="actions"><button class="btn btn-primary" data-solve="suot" data-count="16">Решать</button></div>
+      </article>
+    </div>
+    <p class="status" id="home-status" role="status"></p>
+
+    <h2 id="tools">Инструменты</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>Генератор кроссвордов</h3>
+        <p>Выберите одну или несколько тем и количество слов — сервер соберёт уникальный кроссворд.</p>
+        <div class="actions"><a class="btn" href="/generator">Открыть генератор</a></div>
+      </article>
+      <article class="card">
+        <h3>Панель преподавателя</h3>
+        <p>Соберите кроссворд из своих слов и вопросов или из банка терминов, настройте подсказки и получите ссылку для студентов.</p>
+        <div class="actions"><a class="btn" href="/teacher">Открыть панель</a></div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      Ответы хранятся только на сервере и не передаются студентам. Прогресс решения хранится в вашем браузере. Персональные данные не собираются.
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/home.js"></script>
+</body>
+</html>

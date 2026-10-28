@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Решение кроссворда — ПромБезКроссворд</title>
+  <meta name="description" content="Интерактивное решение кроссворда по промышленной безопасности. Проверка выполняется на сервере — ответы не передаются в браузер.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">🧩 ПромБезКроссворд</a>
+      <nav class="site-nav" aria-label="Основное меню">
+        <a href="/">Главная</a>
+        <a href="/generator">Генератор</a>
+        <a href="/teacher">Преподавателю</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1 id="cw-title">Кроссворд</h1>
+    <p class="status" id="play-status" role="status"></p>
+    <div class="toolbar no-print">
+      <button class="btn btn-primary" id="btn-check" disabled>Проверить</button>
+      <button class="btn" id="btn-hint" disabled>Подсказка</button>
+      <button class="btn btn-danger" id="btn-reset" disabled>Сбросить</button>
+      <button class="btn" id="btn-print" hidden>Печать</button>
+      <button class="btn" id="btn-copy" hidden>Скопировать ссылку</button>
+    </div>
+    <section id="board-section">
+      <div class="cw-board" id="cw-board"></div>
+      <input class="cw-input" id="cw-input" type="text" autocomplete="off" autocapitalize="characters" aria-label="Ввод букв">
+      <div class="clues">
+        <div>
+          <h3>По горизонтали</h3>
+          <ol id="clues-h"></ol>
+        </div>
+        <div>
+          <h3>По вертикали</h3>
+          <ol id="clues-v"></ol>
+        </div>
+      </div>
+    </section>
+    <p id="load-status" class="status" role="status"></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      Ответы хранятся только на сервере и не передаются студентам. Прогресс решения хранится в вашем браузере. Персональные данные не собираются.
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/play.js"></script>
+</body>
+</html>
